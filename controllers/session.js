@@ -7,30 +7,30 @@ exports.createSession = (req, res, next) => {
 
 	session
 		.save()
-		.then(() => res.status(201).json({ message: "Objet enregistré !" }))
+		.then(() => res.status(201).json({ message: "Session created!" }))
 		.catch((error) => res.status(400).json({ error }));
 };
 
 exports.getAllSession = (req, res, next) => {
 	Session.find()
-		.then((things) => res.status(200).json(things))
+		.then((sessions) => res.status(200).json(sessions))
 		.catch((error) => res.status(400).json({ error }));
 };
 
 exports.getSession = (req, res, next) => {
 	Session.findOne({ _id: req.params.id })
-		.then((thing) => res.status(200).json(thing))
+		.then((session) => res.status(200).json(session))
 		.catch((error) => res.status(404).json({ error }));
 };
 
 exports.updateSession = (req, res, next) => {
 	Session.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
-		.then(() => res.status(200).json({ message: "Objet modifié !" }))
+		.then(() => res.status(200).json({ message: "Session updated!" }))
 		.catch((error) => res.status(400).json({ error }));
 };
 
 exports.deleteSession = (req, res, next) => {
 	Session.deleteOne({ _id: req.params.id })
-		.then(() => res.status(200).json({ message: "Objet supprimé !" }))
+		.then(() => res.status(200).json({ message: "Session deleted!" }))
 		.catch((error) => res.status(400).json({ error }));
 };
